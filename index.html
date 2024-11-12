@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -5,53 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ЧПК Інструменти - Інноваційний Магазин</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Головна сторінка -->
-    <header>
+    <header class="main-header">
         <h1>ЧПК Інструменти</h1>
-        <nav>
+        <nav class="main-nav">
             <ul>
                 <li><a href="index.html">Головна</a></li>
-                <li><a href="#">Категорії</a></li>
-                <li><a href="cart.html">Кошик</a></li>
-                <li><a href="login.html">Вхід</a></li>
-                <li><a href="registration.html">Реєстрація</a></li>
+                <li class="dropdown">
+                    <a href="#" id="category-menu-btn">Категорії</a>
+                    <div class="dropdown-content">
+                        <a href="milling.html">Фрези</a>
+                        <a href="turning.html">Токарні інструменти</a>
+                        <a href="drilling.html">Свердла</a>
+                    </div>
+                </li>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+                <li><a href="cart.html" class="cart-btn">Кошик</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Ласкаво просимо до нашого магазину ЧПК інструментів!</h2>
-            <p>Знайдіть все необхідне для обробки з ЧПК обладнанням.</p>
-        </section>
-
-        <section>
-            <h2>Популярні Категорії</h2>
-            <div>
-                <div>
-                    <img src="images/CNC_milling_tools.png" alt="Фрези">
-                    <h3>Фрези</h3>
-                    <a href="milling.html">Переглянути</a>
-                </div>
-                <div>
-                    <img src="images/CNC_turning_tools.png" alt="Токарні інструменти">
-                    <h3>Токарні інструменти</h3>
-                    <a href="turning.html">Переглянути</a>
-                </div>
-                <div>
-                    <img src="images/CNC_drilling_tools.png" alt="Свердла">
-                    <h3>Свердла</h3>
-                    <a href="drilling.html">Переглянути</a>
-                </div>
-            </div>
-        </section>
-    </main>
+    <!-- Додане зображення на весь екран -->
+    <section class="main-image-fullscreen">
+        <img src="images/milling_placeholder.png" alt="Інструменти для ЧПК на весь екран">
+    </section>
 
     <footer>
-        <p>© 2024 ЧПК Інструменти. Усі права захищені.</p>
+        <p>&copy; 2024 ЧПК Інструменти. Усі права захищено.</p>
     </footer>
 </body>
 </html>
-

@@ -1,40 +1,45 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Деталі товару</title>
+    <title>Товар - ЧПК Інструменти</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="cart.js" defer></script> <!-- Підключаємо функціонал кошика -->
 </head>
 <body>
-
-    <!-- Шапка -->
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html">ЧПК Інструменти</a>
-            </div>
-            <nav class="navigation">
-                <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="cart.html">Кошик</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>ЧПК Інструменти - Опис товару</h1>
     </header>
 
-    <!-- Деталі товару -->
-    <section class="product-details" id="product-details">
-        <img id="product-image" alt="Назва товару" class="product-image">
+    <!-- Секція товару з описом, характеристиками, ціною та фотографіями -->
+    <section class="product-details">
+        <div class="product-images">
+            <img src="images/tool_image.jpg" alt="Інструмент" class="main-image">
+            <div class="image-gallery">
+                <img src="images/tool_image.jpg" alt="Фото 1">
+                <img src="images/tool_image.jpg" alt="Фото 2">
+                <img src="images/tool_image.jpg" alt="Фото 3">
+            </div>
+        </div>
+
         <div class="product-info">
-            <h2 id="product-title">Назва товару</h2>
-            <p id="product-price">Ціна: </p>
-            <p id="product-description">Детальний опис товару...</p>
-            <a href="#" class="btn-primary" id="add-to-cart">Додати в кошик</a>
+            <h2>Назва товару</h2>
+            <p>Ціна: <span class="product-price">$100</span></p>
+            <p>Наявність: <span class="product-stock">Є в наявності</span></p>
+            <p>Опис: <span class="product-description">Цей інструмент ідеально підходить для ЧПК верстатів і забезпечує високу якість роботи.</span></p>
+            <p>Характеристики:</p>
+            <ul>
+                <li>Матеріал: Сталь</li>
+                <li>Діаметр: 10 мм</li>
+                <li>Максимальна швидкість: 6000 об/хв</li>
+            </ul>
+            <button class="add-to-cart-btn" data-name="Назва товару" data-price="100">Додати в кошик</button>
         </div>
     </section>
 
-    <script src="product.js"></script>
+    <footer>
+        <p>&copy; 2024 ЧПК Інструменти. Усі права захищено.</p>
+    </footer>
 </body>
 </html>

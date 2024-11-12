@@ -1,16 +1,35 @@
 
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBvZLCh9lxq5X0p4cabemdDUgrBUog6Afo",
+  authDomain: "my-cnc-sayt.firebaseapp.com",
+  projectId: "my-cnc-sayt",
+  storageBucket: "my-cnc-sayt.appspot.com",
+  messagingSenderId: "884153279044",
+  appId: "1:884153279044:web:64ecf3d95b916b17041211",
+  measurementId: "G-NL97BJE8NQ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
 document.getElementById('registration-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Зберігаємо дані користувача в localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ username, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Реєстрація пройшла успішно! Тепер ви можете увійти.');
-    window.location.href = 'login.html';
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert('Реєстрація пройшла успішно! Тепер ви можете увійти.');
+            window.location.href = 'login.html';
+        })
+        .catch((error) => {
+            alert(`Помилка реєстрації: ${error.message}`);
+        });
 });

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свердла - ЧПК Інструменти</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="category_script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">ЧПК Інструменти</a>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="#">Категорії</a>
+                        <ul class="dropdown">
+                            <li><a href="milling.html">Фрези</a></li>
+                            <li><a href="turning.html">Токарні інструменти</a></li>
+                            <li><a href="drilling.html">Свердла</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" id="cart-button"><i class="fas fa-shopping-cart"></i> Кошик</a></li>
+                    <li><a href="login.html"><i class="fas fa-user"></i> Вхід</a></li>
+                    <li><a href="registration.html">Реєстрація</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Головний контент категорії -->
+    <section class="category-content">
+        <h2>Свердла</h2>
+        <div class="product-list" id="product-list">
+            <!-- Товари будуть додаватися динамічно через JavaScript -->
+        </div>
+    </section>
+
+    <!-- Підвал -->
+    <footer>
+        <div class="footer-content compact-footer">
+            <p>© 2024 ЧПК Інструменти. Усі права захищені.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productList = document.getElementById('product-list');
+
+            // Отримання товарів з localStorage
+            let products = JSON.parse(localStorage.getItem('products')) || [];
+
+            // Фільтрація товарів по категорії "Свердла"
+            const filteredProducts = products.filter(product => product.category === 'Свердла');
+
+            // Відображення товарів на сторінці
+            filteredProducts.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+                productItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h4>${product.name}</h4>
+                    <p>${product.description}</p>
+                    <p>Ціна: ${product.price} грн</p>
+                    <button class="btn-secondary">Додати в кошик</button>
+                `;
+                productList.appendChild(productItem);
+            });
+        });
+    </script>
+</body>
+</html>

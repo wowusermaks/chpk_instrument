@@ -1,48 +1,29 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalPriceElement = document.getElementById('total-price');
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-    let totalPrice = 0;
 
-    // Відображення товарів у кошику
-    cartItems.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
-        itemElement.innerHTML = `
-            <p>${item.name} - ${item.price}</p>
-            <button class="remove-item" data-index="${index}">Видалити</button>
-        `;
-        cartItemsContainer.appendChild(itemElement);
-        totalPrice += parseFloat(item.price.replace(/[^\d]/g, ''));
-    });
+const firebaseConfig = {
+  apiKey: "AIzaSyBvZLCh9lxq5X0p4cabemdDUgrBUog6Afo",
+  authDomain: "my-cnc-sayt.firebaseapp.com",
+  projectId: "my-cnc-sayt",
+  storageBucket: "my-cnc-sayt.appspot.com",
+  messagingSenderId: "884153279044",
+  appId: "1:884153279044:web:64ecf3d95b916b17041211",
+  measurementId: "G-NL97BJE8NQ"
+};
 
-    totalPriceElement.textContent = `Загальна вартість: ${totalPrice} грн`;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-    // Видалення товарів із кошика
-    document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const index = event.target.getAttribute('data-index');
-            cartItems.splice(index, 1);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            window.location.reload();
+const db = getFirestore(app);
+
+function addToCart(product) {
+    addDoc(collection(db, "cart"), product)
+        .then(() => {
+            alert('Товар додано в кошик!');
+        })
+        .catch(error => {
+            console.error("Помилка додавання в кошик:", error);
         });
-    });
-
-    // Оформлення замовлення
-    const checkoutForm = document.getElementById('checkout-form');
-    checkoutForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const address = document.getElementById('address').value;
-
-        alert(`Дякуємо, ${name}! Ваше замовлення підтверджено і буде відправлено на адресу: ${address}.`);
-
-        // Очищення кошика після оформлення замовлення
-        localStorage.removeItem('cartItems');
-        window.location.reload();
-    });
-});
+}
